@@ -1,0 +1,10 @@
+CREATE TABLE husband(
+  hid int AUTO_INCREMENT PRIMARY KEY ,
+  hname VARCHAR(20)
+);
+CREATE TABLE wife(
+  wid int AUTO_INCREMENT PRIMARY KEY ,
+  hid int unique,
+  wname VARCHAR(20),
+  CONSTRAINT `h_w_id_fk` FOREIGN KEY (`hid`) REFERENCES `husband` (`hid`)
+);

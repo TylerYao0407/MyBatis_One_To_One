@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tyler.mapper.HusbandMapper">
+    <resultMap id="husbandMap" type="husband">
+        <id property="hid" column="hid"/>
+        <result property="hname" column="hname"/>
+    </resultMap>
+    <!--被管理的表查询，他被管理他的那张表调用getHusband-->
+    <select id="getHusband" parameterType="int" resultMap="husbandMap">
+        select * from husband where hid=#{hid}
+    </select>
+    <insert id="addHusband" parameterType="husband" useGeneratedKeys="true" keyProperty="hid">
+        insert into husband (hname) VALUES (#{hname})
+    </insert>
+    <delete id="deleteHusband" parameterType="int">
+        DELETE from husband where hid=#{hid}
+    </delete>
+</mapper>

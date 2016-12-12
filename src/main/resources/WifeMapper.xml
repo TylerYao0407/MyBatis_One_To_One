@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tyler.mapper.WifeMapper">
+    <resultMap id="wifeMap" type="wife">
+        <id property="wid" column="wid"/>
+        <result property="wname" column="wname"/>
+        <association property="husband" column="hid" select="com.tyler.mapper.HusbandMapper.getHusband"/>
+    </resultMap>
+    <select id="getWife" parameterType="int" resultMap="wifeMap">
+        select * from wife where wid=#{wid}
+    </select>
+    <insert id="addWife" parameterType="wife">
+        insert into wife(hid,wname) VALUES (#{husband.hid},#{wname})
+    </insert>
+    <delete id="deleteWife" parameterType="int">
+        DELETE from Wife where hid=#{hid}
+    </delete>
+
+</mapper>
